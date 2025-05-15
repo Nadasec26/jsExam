@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-black">
+
+    <div class="loading">
+        <span class="loader"></span>
+    </div>
+
+    <div class="settings position-fixed z-3 d-flex align-content-center ">
+        <div class="upper bg-black px-2 py-3 d-flex flex-column justify-content-between">
+            <ul class="menu list-unstyled text-white p-2">
+                <li class="mb-3"><a class="list-unstyled text-decoration-none text-white" href="search.html">Search</a></li>
+                <li class="mb-3"><a class="list-unstyled text-decoration-none text-white" href="category.html">Categories</a></li>
+                <li class="mb-3"><a class="list-unstyled text-decoration-none text-white" href="area.html">Area</a></li>
+                <li class="mb-3"><a class="list-unstyled text-decoration-none text-white" href="Ingredient.html">Ingredients</a></li>
+                <li class="mb-3"><a class="list-unstyled text-decoration-none text-white" href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="foot text-white p-2">
+                <div class="icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <p>Copyright Â© 2019 All Rights Reserved.</p>
+            </div>
+        </div>
+        <div class="gear-icon bg-white p-2 d-flex flex-column justify-content-between">
+            <img src="./img/logo.png" class="w-100" alt="">
+            <div class="bar d-flex justify-content-center">
+                <i class="fa-solid fa-bars fs-2" id="toggle-icon"></i>
+            </div>
+            <div class="icons d-flex flex-column gap-2">
+                <i class="fa-solid fa-globe"></i>
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row py-5 rowData">
+            </div>
+        </div>
+        <div id="detailsSection" class="container d-none">
+            <div class="row py-5" id="details">
+                
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/all.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

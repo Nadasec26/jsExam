@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-black">
+    
+    <div class="container py-5">
+        <div class="form py-5">
+            <div class="row justify-content-center py-5 gy-3">
+                <div class="col-md-5">
+                    <input type="text" oninput="inputValidation(this,'nameAlert')" class="form-control" id="nameInput" placeholder="Enter Your Name">
+                    <p id="nameAlert" class="text-danger d-none">Special characters and numbers not allowed</p>
+                </div>
+                <div class="col-md-5">
+                    <input type="email" oninput="inputValidation(this,'emailAlert')" class="form-control" id="emailInput" placeholder="Enter Your Email">
+                    <p id="emailAlert" class="text-danger d-none">Email not valid *exemple@yyy.zzz</p>
+                </div>
+                <div class="col-md-5">
+                    <input type="tel" oninput="inputValidation(this,'phoneAlert')" class="form-control" id="phoneInput" placeholder="Enter Your Phone">
+                    <p id="phoneAlert" class="text-danger d-none">Enter valid Phone Number</p>
+                </div>
+                <div class="col-md-5">
+                    <input type="number" oninput="inputValidation(this,'ageAlert')" class="form-control" id="ageInput" placeholder="Enter Your Age">
+                    <p id="ageAlert" class="text-danger d-none">Enter valid age</p>
+                </div>
+                <div class="col-md-5">
+                    <input type="password" oninput="inputValidation(this,'passwordAlert')" class="form-control" id="passwordInput" placeholder="Enter Your Password">
+                    <p id="passwordAlert" class="text-danger d-none">Enter valid password *Minimum eight characters, at least one letter and one number:*</p>
+                </div>
+                <div class="col-md-5">
+                    <input type="password" class="form-control" id="repasswordInput" placeholder="Enter Your Repassword">
+                    <p id="repasswordAlert" class="text-danger d-none">Passwords do not match</p>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-danger mt-4 d-block mx-auto" id="submitBtn" disabled>Submit</button>
+        </div>
+    </div>
+    
+
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/all.min.js"></script>
+    <script src="./js/contact.js"></script>
+</body>
+</html>

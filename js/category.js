@@ -1,0 +1,124 @@
+var rowData = document.querySelector('.rowData');
+
+
+
+// getCategories
+async function getCategories() {
+    try{
+        let res = await fetch (`https://www.themealdb.com/api/json/v1/1/categories.php`);
+        let data = await res.json();
+        console.log(data.categories);
+        diaplayCategory(data.categories);
+        
+    }catch(err){
+        console.log(err);
+    }
+}
+
+getCategories()
+
+
+function diaplayCategory(arr){
+    var cartona = '';
+    for(var i = 0 ; i < arr.length ; i++){
+        cartona += `
+        <div class="col-md-3 mb-4">
+                    <div class="item position-relative rounded-4 cursor-pointer" onclick="getCategoryMeals('${arr[i].strCategory}')" >
+                        <img src="${arr[i].strCategoryThumb}" class="w-100" alt="meal">
+                        <div class="caption bg-white bg-opacity-75 position-absolute top-0 bottom-0 start-0 end-0 rounded-4 text-center p-2">
+                            <h3>${arr[i].strCategory}</h3>
+                            <p class="small">${arr[i].strCategoryDescription.split(" ").slice(0, 20).join(" ")}</p>
+                        </div>
+                    </div>
+                </div>
+        `
+    }
+    rowData.innerHTML = cartona;
+}
+
+
+// getCategoryMeals
+async function getCategoryMeals(categoryName) {
+    try{
+        let res = await fetch (`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`);
+        let data = await res.json();
+        console.log(data.meals);
+        diaplayData(data.meals)
+        
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+function diaplayData(meals){
+    var cartona = '';
+    for(var i = 0 ; i < meals.length ; i++){
+        cartona += `
+        <div class="col-md-3 mb-4">
+                    <div class="item position-relative rounded-4 cursor-pointer" onclick="getMealDetails('${meals[i].idMeal}')">
+                        <img src="${meals[i].strMealThumb}" class="w-100" alt="meal">
+                        <div class="caption bg-white bg-opacity-75 position-absolute top-0 bottom-0 start-0 end-0 rounded-4 d-flex align-items-center p-2">
+                            <h3>${meals[i].strMeal}</h3>
+                        </div>
+                    </div>
+                </div>
+        `
+    }
+    rowData.innerHTML = cartona;
+}
+
+// getMealDetails
+async function getMealDetails(Id) {
+    try{
+        let res = await fetch (`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${Id}`);
+        let data = await res.json();
+        console.log(data.meals);
+        displayMealDetails(data.meals[0]);
+        
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+function displayMealDetails(meal){
+    let ingredients = ``;
+    for(let i = 1; i<=20; i++){
+        let ingredient = meal[`strIngredient${i}`];
+        let measure = meal[`strMeasure${i}`];
+        if (ingredient && ingredient !== ""){
+            ingredients += `<li class="badge bg-primary-subtle text-primary-emphasis m-1 p-2">${measure} ${ingredient}</li>`;
+        }
+    }
+    let tags = meal.strTags ? meal.strTags.split(",").map(tag => `<li class="badge bg-warning text-dark m-1 p-2">${tag}</li>`).join("") : "No tags";
+
+    let cartona = `
+        <div class="col-md-4 text-white">
+                    <img src="${meal.strMealThumb}" class="w-100 rounded-4" alt="meal">
+                    <h2 class="mt-3">${meal.strMeal}</h2>
+                </div>
+                <div class="col-md-8 text-white">
+                    <h4>Instructions</h4>
+                    <p>${meal.strInstructions}</p>
+                    <h5><span class="fw-bold">Area:</span>${meal.strArea}</h5>
+                    <h5><span class="fw-bold">Category:</span>${meal.strCategory}</h5>
+                    <h5>Recipes:</h5>
+                    <ul class="list-unstyled d-flex flex-wrap">${ingredients}</ul>
+                    <h5>Tags:</h5>
+                    <ul class="list-unstyled d-flex flex-wrap">${tags}</ul>
+                    <a href="${meal.strSource}" target="_blank" class="btn btn-success me-2">Source</a>
+                    <a href="${meal.strYoutube}" target="_blank" class="btn btn-danger">YouTube</a>
+                </div>
+    `;
+    rowData.innerHTML = cartona;
+}
+
+
+// loading
+
+jQuery(function(){
+    $('.loading').fadeOut(1000, function(){
+        $('body').css({overflow:'auto'})
+    });
+})
