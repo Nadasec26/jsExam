@@ -99,3 +99,32 @@ function showMealDetails(meal) {
 
 
 
+// menuBox
+$(document).ready(function () {
+    const menuBox = $('.upper').innerWidth();
+    let isShow = false;
+    $('.settings').css({ left: `-${menuBox}px` });
+    $('.bar').on('click', function () {
+        if (isShow) {
+            $('.settings').animate({ left: `-${menuBox}px` }, 500);
+            $('#toggle-icon').addClass('fa-bars').removeClass('fa-xmark');
+            $(".menu li").css({
+                opacity: 0,
+                transform: "translateY(20px)",
+                animation: "none"
+            });
+            isShow = false;
+        } else {
+            $('.settings').animate({ left: `0` }, 500, function () {
+                $(".menu li").each(function (index) {
+                    $(this).css({
+                        animation: `slideIn 0.5s ease forwards`,
+                        "animation-delay": `${index * 0.2}s`
+                    });
+                });
+            });
+            $('#toggle-icon').removeClass('fa-bars').addClass('fa-xmark');
+            isShow = true;
+        }
+    });
+});
